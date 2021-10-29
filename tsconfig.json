@@ -1,0 +1,25 @@
+{
+    "type": "module",
+    "compilerOptions": {
+        "strict": true,
+        "target": "ES6",
+        "module": "commonjs",
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "incremental": true,
+        "outDir": "dist"
+    },
+    "include": [
+        "src/**/*",
+        "src/.config.json",
+        "src/data/*.json"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist/**/*"
+    ]
+}
