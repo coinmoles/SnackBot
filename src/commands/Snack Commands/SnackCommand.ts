@@ -1,9 +1,6 @@
-import { DateTime } from 'luxon'
 import { RunFunction } from '../../utils/interfaces/Command'
 import { PREFIX } from '../../utils/constants'
-import { toShortDate } from '../../utils/helper/toShortDate'
 import { addSnackData } from '../../embed/addSnackData'
-import { ShortDate } from '../../utils/interfaces/ShortDate'
 import { parseDateString } from '../../utils/helper/parseDateString'
 
 export const run: RunFunction = async (client, message) => {
@@ -26,7 +23,6 @@ export const run: RunFunction = async (client, message) => {
         await message.channel.send({embeds: [ embed ]})
     }
     
-    console.log(date);
 }
 
 export const name: string = '간식';
