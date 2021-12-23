@@ -1,16 +1,17 @@
-import { RunFunction } from "../../interfaces/Command";
-import { Command } from '../../interfaces/Command'
+import { RunFunction } from "../../utils/interfaces/Command";
+import { Command } from '../../utils/interfaces/Command'
 import { Message } from "discord.js";
+import { PREFIX } from "../../utils/constants";
 
 export const run: RunFunction = async (client, message: Message) => {
     if (message.author.bot ||
         !message.guild || 
-        !message.content.toLowerCase().startsWith('간식')
-        ) 
+        !message.content.toLowerCase().startsWith(PREFIX)
+        )  
         return;
-
+    
     const args: string[] = message.content
-        .slice('간식'.length)
+        .slice(PREFIX.length)
         .trim()
         .split(/ +/g);
 
@@ -22,7 +23,7 @@ export const run: RunFunction = async (client, message: Message) => {
     if (!command) return;
 
     command.run(client, message, args)
-    .catch((reason: any) => message.channel.send('hmm'))
+    .catch((reason: any) => message.channel.send('Error'))
 }
 
 export const name: string = 'messageCreate';

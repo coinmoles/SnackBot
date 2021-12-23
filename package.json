@@ -3,10 +3,13 @@
     "@types/consola": "^2.2.5",
     "@types/dotenv": "^8.2.0",
     "@types/glob": "^7.1.4",
+    "@types/luxon": "^2.0.5",
+    "axios": "^0.24.0",
     "consola": "^2.15.3",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "glob": "^7.2.0",
+    "luxon": "^2.0.2",
     "ts-node": "^10.2.1",
     "ts-node-dev": "^1.1.8"
   },
@@ -17,7 +20,9 @@
   "scripts": {
     "start:dev": "NODE_ENV=development ts-node-dev --respawn --transfile-only src/index.ts",
     "start:build": "NODE_ENV=proudction node build/index.js",
-    "start": "NODE_ENV=production ts-node src/index.ts",
-    "build": "tsc-watch --onSuccess 'node --trace-deprecation ./dist/index.js'"
+    "start": "node dist/index.js",
+    "heroku-build": "tsc",
+    "build": "ts-node src/index.ts",
+    "watch": "tsc-watch --onSuccess 'node --trace-deprecation ./dist/index.js'"
   }
 }

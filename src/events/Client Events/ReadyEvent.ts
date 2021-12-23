@@ -1,4 +1,4 @@
-import { RunFunction } from "../../interfaces/Command";
+import { RunFunction } from "../../utils/interfaces/Command";
 
 export const run: RunFunction = async (client) => {
     client.logger.success(`Me is now online!`)

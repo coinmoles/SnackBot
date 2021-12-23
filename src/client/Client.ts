@@ -1,9 +1,9 @@
 import consola, { Consola } from 'consola'
 import { Client, MessageEmbedOptions, Message, MessageEmbed, Intents, Collection} from 'discord.js'
 import glob from 'glob'
-import { Command } from '../interfaces/Command'
-import { Event } from '../interfaces/Event'
-import { Config } from '../interfaces/Config'
+import { Command } from '../utils/interfaces/Command'
+import { Event } from '../utils/interfaces/Event'
+import { Config } from '../utils/interfaces/Config'
 import { promisify } from 'util'
 
 const globPromise = promisify(glob)
@@ -35,7 +35,7 @@ class Bot extends Client {
     }
 
     public embed(options: MessageEmbedOptions, message: Message): MessageEmbed {
-        return new MessageEmbed({...options, color: 'RANDOM'}).setFooter(
+        return new MessageEmbed({...options, color: "NAVY"}).setFooter(
             `${message.author.tag}`, 
             message.author.displayAvatarURL({ format: 'png', dynamic: true }))   
     }

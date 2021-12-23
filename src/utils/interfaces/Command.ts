@@ -1,4 +1,4 @@
-import { Bot } from '../client/Client'
+import { Bot } from '../../client/Client'
 import { Message } from 'discord.js'
 
 export interface RunFunction {
