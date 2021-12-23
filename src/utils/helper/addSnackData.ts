@@ -1,8 +1,8 @@
 import axios from "axios";
 import { MessageEmbed } from "discord.js";
-import { BACKEND_URL } from "../utils/constants";
-import { ShortDate } from "../utils/interfaces/ShortDate";
-import { SnackData } from "../utils/interfaces/SnackData";
+import { BACKEND_URL } from "../constants";
+import { ShortDate } from "../interfaces/ShortDate";
+import { SnackData } from "../interfaces/SnackData";
 
 export const addSnackData = async (embed: MessageEmbed, date: ShortDate) => {
     const snackData: SnackData | undefined = (await axios.get(BACKEND_URL+"/snack/daily", {
