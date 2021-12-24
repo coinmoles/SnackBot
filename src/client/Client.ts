@@ -34,6 +34,7 @@ class Bot extends Client {
             this.events.set(file.name, file)
             this.on(file.name, file.run.bind(null, this))
         })
+        
     }
 
     public embed(options: MessageEmbedOptions, message: Message): MessageEmbed {
