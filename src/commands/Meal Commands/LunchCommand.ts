@@ -3,6 +3,7 @@ import { PREFIX } from '../../utils/constants'
 import { parseDateString } from '../../utils/helper/parseDateString'
 import { addMealData } from '../../utils/helper/addMealData'
 import { addSnackData } from '../../utils/helper/addSnackData'
+import { addWarning } from '../../utils/helper/addWarning'
 
 export const run: RunFunction = async (client, message) => {
     let embed = client.embed({}, message);
@@ -19,12 +20,12 @@ export const run: RunFunction = async (client, message) => {
         await message.channel.send("날짜 형식이 맞지 않아요!")
     }
     else {
-        await addMealData(embed, date, { morning: true, lunch: true, dinner: true });
-        (await addSnackData(embed, date))
-            .setTitle(`${date.year}년 ${date.month}월 ${date.day}일의 급식`);
+        await addMealData(embed, date, { morning: false, lunch: true, dinner: false });
+        addWarning(embed, client);
+        embed.setTitle(`${date.year}년 ${date.month}월 ${date.day}일의 점심`);
+        
         await message.channel.send({embeds: [ embed ]})
     }
-    
 }
 
-export const name: string = '급식';
+export const name: string = '점심';

@@ -38,8 +38,6 @@ class Bot extends Client {
 
     public embed(options: MessageEmbedOptions, message: Message): MessageEmbed {
         return new MessageEmbed({...options, color: "NAVY"})
-            .setFooter("급식 또는 간식 정보가 제대로 표시되지 않는 경우 coinmoles#1677에게 문의 바랍니다.", 
-                this.user?.displayAvatarURL({ format: "png", dynamic: true })) 
     }
 }
 
