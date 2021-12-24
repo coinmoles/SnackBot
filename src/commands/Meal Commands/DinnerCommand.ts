@@ -2,7 +2,6 @@ import { RunFunction } from '../../utils/interfaces/Command'
 import { PREFIX } from '../../utils/constants'
 import { parseDateString } from '../../utils/helper/parseDateString'
 import { addMealData } from '../../utils/helper/addMealData'
-import { addSnackData } from '../../utils/helper/addSnackData'
 import { addWarning } from '../../utils/helper/addWarning'
 
 export const run: RunFunction = async (client, message) => {
