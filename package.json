@@ -28,6 +28,6 @@
     "heroku-build": "echo skip build on heroku",
     "build": "tsc",
     "watch": "tsc-watch --onSuccess 'node --trace-deprecation ./dist/index.js'",
-    "deploy": "git add . && git commit -m 'heroku' && git push -f heroku main"
+    "deploy": "git push heroku main"
   }
 }
