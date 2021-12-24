@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node": "16.6",
+    "npm": "7.x"
+  },
   "dependencies": {
     "@types/consola": "^2.2.5",
     "@types/dotenv": "^8.2.0",
@@ -21,8 +25,9 @@
     "start:dev": "NODE_ENV=development ts-node-dev --respawn --transfile-only src/index.ts",
     "start:build": "NODE_ENV=proudction node build/index.js",
     "start": "node dist/index.js",
-    "heroku-build": "tsc",
-    "build": "ts-node src/index.ts",
-    "watch": "tsc-watch --onSuccess 'node --trace-deprecation ./dist/index.js'"
+    "heroku-build": "echo skip build on heroku",
+    "build": "tsc",
+    "watch": "tsc-watch --onSuccess 'node --trace-deprecation ./dist/index.js'",
+    "deploy": "git add . && git commit -m 'heroku' && git push -f heroku main"
   }
 }

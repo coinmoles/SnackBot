@@ -14,9 +14,7 @@
         "outDir": "dist"
     },
     "include": [
-        "src/**/*",
-        "src/.config.json",
-        "src/data/*.json"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",
