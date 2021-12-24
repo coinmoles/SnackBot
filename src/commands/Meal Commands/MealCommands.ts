@@ -19,8 +19,8 @@ export const run: RunFunction = async (client, message) => {
         await message.channel.send("날짜 형식이 맞지 않아요!")
     }
     else {
-        embed = (await addMealData(embed, date))
-        embed = (await addSnackData(embed, date))
+        await addMealData(embed, date, { morning: true, lunch: true, dinner: true });
+        (await addSnackData(embed, date))
             .setTitle(`${date.year}년 ${date.month}월 ${date.day}일의 급식`);
         await message.channel.send({embeds: [ embed ]})
     }
