@@ -18,7 +18,7 @@ class Bot extends Client {
         super({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES], messageCacheLifetime: 100})
         this.config = _config
     }
-
+ 
     public async start(): Promise<void> {
         this.login(this.config.token)
         const commandFiles: string[] = await globPromise(`${__dirname}/../commands/**/*{.ts,.js}`)
