@@ -1,29 +1,23 @@
-import { RunFunction } from '../../utils/interfaces/Command'
+import { Command } from '../../utils/interfaces/Command'
 import { BOTNAME, PREFIX } from '../../utils/constants'
 import { MessageEmbed } from 'discord.js'
 
 const name: string = '도움말';
 
-export const infoCommand: RunFunction = async (client, message) => {
-    const infoString: string = message.content
-        .slice(PREFIX.length)
-        .trim()
-        .slice(name.length)
-        .trim()
-
+export const infoCommand: Command = async (client, message, argString) => {
     let embed = client.embed({}, message)
 
-    if (infoString === "")
+    if (argString === "")
         addDefaultInfo(embed);
-    else if (infoString === "급식") 
+    else if (argString === "급식") 
         addInfoWithDate("급식", "급식 및 간식", embed)    
-    else if (infoString === "아침") 
+    else if (argString === "아침") 
         addInfoWithDate("아침", "아침", embed) 
-    else if (infoString === "점심") 
+    else if (argString === "점심") 
         addInfoWithDate("점심", "점심", embed) 
-    else if (infoString === "저녁") 
+    else if (argString === "저녁") 
         addInfoWithDate("저녁", "저녁", embed) 
-    else if (infoString === "간식") 
+    else if (argString === "간식") 
         addInfoWithDate("간식", "간식", embed)
     else
         addErrorInfo(embed);

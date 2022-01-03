@@ -1,4 +1,4 @@
-import { RunFunction } from '../../utils/interfaces/Command'
+import { Command } from '../../utils/interfaces/Command'
 import { PREFIX } from '../../utils/constants'
 import { addSnackData } from '../../utils/helper/addSnackData'
 import { parseDateString } from '../../utils/helper/parseDateString'
@@ -6,16 +6,10 @@ import { addWarning } from '../../utils/helper/addWarning'
 
 const name: string = '간식';
 
-export const snackCommand: RunFunction = async (client, message) => {
+export const snackCommand: Command = async (client, message, argString) => {
     let embed = client.embed({}, message);
 
-    const dateString: string = message.content
-        .slice(PREFIX.length)
-        .trim()
-        .slice(name.length)
-        .trim()
-
-    const date = parseDateString(dateString)
+    const date = parseDateString(argString)
 
     if (date === undefined) {
         await message.channel.send("Invalid Date Format")

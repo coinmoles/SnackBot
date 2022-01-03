@@ -1,4 +1,4 @@
-import { RunFunction } from '../../utils/interfaces/Command'
+import { Command } from '../../utils/interfaces/Command'
 import { PREFIX } from '../../utils/constants'
 import { parseDateString } from '../../utils/helper/parseDateString'
 import { addMealData } from '../../utils/helper/addMealData'
@@ -6,16 +6,10 @@ import { addWarning } from '../../utils/helper/addWarning'
 
 const name: string = '저녁';
 
-export const dinnerCommand: RunFunction = async (client, message) => {
+export const dinnerCommand: Command = async (client, message, argString) => {
     let embed = client.embed({}, message);
 
-    const dateString: string = message.content
-        .slice(PREFIX.length)
-        .trim()
-        .slice(name.length)
-        .trim()
-
-    const date = parseDateString(dateString)
+    const date = parseDateString(argString)
 
     if (date === undefined) {
         await message.channel.send("날짜 형식이 맞지 않아요!")

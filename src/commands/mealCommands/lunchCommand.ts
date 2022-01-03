@@ -2,20 +2,14 @@ import { PREFIX } from '../../utils/constants'
 import { addMealData } from '../../utils/helper/addMealData'
 import { addWarning } from '../../utils/helper/addWarning'
 import { parseDateString } from '../../utils/helper/parseDateString'
-import { RunFunction } from '../../utils/interfaces/Command'
+import { Command } from '../../utils/interfaces/Command'
 
 const name: string = '점심';
 
-export const lunchCommand: RunFunction = async (client, message) => {
+export const lunchCommand: Command = async (client, message, argString) => {
     let embed = client.embed({}, message);
 
-    const dateString: string = message.content
-        .slice(PREFIX.length)
-        .trim()
-        .slice(name.length)
-        .trim()
-
-    const date = parseDateString(dateString)
+    const date = parseDateString(argString)
 
     if (date === undefined) {
         await message.channel.send("날짜 형식이 맞지 않아요!")

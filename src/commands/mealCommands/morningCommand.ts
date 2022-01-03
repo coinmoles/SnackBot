@@ -2,20 +2,14 @@ import { PREFIX } from '../../utils/constants'
 import { addMealData } from '../../utils/helper/addMealData'
 import { addWarning } from '../../utils/helper/addWarning'
 import { parseDateString } from '../../utils/helper/parseDateString'
-import { RunFunction } from '../../utils/interfaces/Command'
+import { Command } from '../../utils/interfaces/Command'
 
 const name: string = '아침';
 
-export const morningCommand: RunFunction = async (client, message) => {
+export const morningCommand: Command = async (client, message, argString) => {
     let embed = client.embed({}, message);
-
-    const dateString: string = message.content
-        .slice(PREFIX.length)
-        .trim()
-        .slice(name.length)
-        .trim()
-
-    const date = parseDateString(dateString)
+    
+    const date = parseDateString(argString)
     console.log(date);
 
     if (date === undefined) {

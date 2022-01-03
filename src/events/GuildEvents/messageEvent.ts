@@ -1,4 +1,4 @@
-import { RunFunction } from '../../utils/interfaces/Command'
+import { Command } from '../../utils/interfaces/Command'
 import { Message } from "discord.js";
 import { PREFIX } from "../../utils/constants";
 import { Bot } from "../../client/Client";
@@ -11,18 +11,23 @@ export const onMessageCreate = async (client: Bot, message: Message) => {
         )  
         return;
     
-    const args: string[] = message.content
+    const cmd = message.content
         .slice(PREFIX.length)
         .trim()
-        .split(/ +/g);
-
-    const cmd: string | undefined = args.shift();
+        .split(/ +/g)
+        .shift();
     if (cmd === undefined) return;
+    
+    const argString: string = message.content
+        .slice(PREFIX.length)
+        .trim()
+        .slice(cmd.length)
+        .trim()
 
-    const command: RunFunction | undefined = commands.get(cmd);
+    const command: Command | undefined = commands.get(cmd);
     
     if (!command) return;
 
-    command(client, message, args)
+    command(client, message, argString)
     .catch((reason: any) => message.channel.send('Error'))
 }
