@@ -4,9 +4,9 @@ import { isNumber } from "./isNumber";
 import { toShortDate } from "./toShortDate"
 
 export const parseDateString = (dateString: string | null): ShortDate | undefined => {
-    if (dateString === "" || dateString === null)
+    if (dateString === null)
         return toShortDate(DateTime.local({ zone: "Asia/Seoul"}));
-    else if (dateString === "")
+    else if (dateString === "" || dateString === "오늘")
         return toShortDate(DateTime.local({ zone: "Asia/Seoul"}));
     else if (dateString === "어제" || dateString === "어저께")
         return toShortDate(DateTime.local({ zone: "Asia/Seoul"}).minus({ days: 1 }));   
