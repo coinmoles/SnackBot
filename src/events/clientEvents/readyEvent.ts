@@ -4,7 +4,7 @@ import { commands } from "../../commands";
 import { PREFIX } from "../../utils/constants";
 
 export const onReady = async (client: Bot) => {
-    client.user?.setActivity(`'${PREFIX} 도움말'을 입력해 주세요!`)
+    client.user?.setActivity(`슬래시 커맨드 목록을 확인해 주세요`)
     client.logger.success(`Pudding is now online!`)
 
     const guild = client.guilds.cache.get(process.env.GUILD_ID!);
