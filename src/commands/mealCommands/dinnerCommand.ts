@@ -4,7 +4,9 @@ import { parseDateString } from '../../utils/helper/parseDateString'
 import { addMealData } from '../../utils/helper/addMealData'
 import { addWarning } from '../../utils/helper/addWarning'
 
-export const run: RunFunction = async (client, message) => {
+const name: string = '저녁';
+
+export const dinnerCommand: RunFunction = async (client, message) => {
     let embed = client.embed({}, message);
 
     const dateString: string = message.content
@@ -27,4 +29,3 @@ export const run: RunFunction = async (client, message) => {
     }
 }
 
-export const name: string = '저녁';

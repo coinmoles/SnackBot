@@ -1,9 +1,10 @@
-import { RunFunction } from "../../utils/interfaces/Command";
-import { Command } from '../../utils/interfaces/Command'
+import { RunFunction } from '../../utils/interfaces/Command'
 import { Message } from "discord.js";
 import { PREFIX } from "../../utils/constants";
+import { Bot } from "../../client/Client";
+import { commands } from '../../commands';
 
-export const run: RunFunction = async (client, message: Message) => {
+export const onMessageCreate = async (client: Bot, message: Message) => {
     if (message.author.bot ||
         !message.guild || 
         !message.content.toLowerCase().startsWith(PREFIX)
@@ -18,12 +19,10 @@ export const run: RunFunction = async (client, message: Message) => {
     const cmd: string | undefined = args.shift();
     if (cmd === undefined) return;
 
-    const command: Command | undefined = client.commands.get(cmd);
+    const command: RunFunction | undefined = commands.get(cmd);
     
     if (!command) return;
 
-    command.run(client, message, args)
+    command(client, message, args)
     .catch((reason: any) => message.channel.send('Error'))
 }
-
-export const name: string = 'messageCreate';

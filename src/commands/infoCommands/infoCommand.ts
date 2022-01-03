@@ -2,7 +2,9 @@ import { RunFunction } from '../../utils/interfaces/Command'
 import { BOTNAME, PREFIX } from '../../utils/constants'
 import { MessageEmbed } from 'discord.js'
 
-export const run: RunFunction = async (client, message) => {
+const name: string = '도움말';
+
+export const infoCommand: RunFunction = async (client, message) => {
     const infoString: string = message.content
         .slice(PREFIX.length)
         .trim()
@@ -66,5 +68,3 @@ const addErrorInfo = (embed: MessageEmbed): MessageEmbed => {
     return embed.setTitle("푸?딩")
         .setDescription("그런 명령어는 없어요!");
 }
-
-export const name: string = '도움말';

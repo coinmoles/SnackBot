@@ -27,7 +27,7 @@
     "start": "node dist/index.js",
     "heroku-build": "echo skip build on heroku",
     "build": "tsc",
-    "watch": "tsc-watch --onSuccess 'node --trace-deprecation ./dist/index.js'",
+    "watch": "tsc-watch --onSuccess 'node ./dist/index.js'",
     "deploy": "git push heroku main"
   }
 }

@@ -13,7 +13,7 @@ export const addMealData = async (embed: MessageEmbed, date: ShortDate, options:
     if (options.morning){
         if (date.year !== DateTime.now().year || date.month !== DateTime.now().month)
             embed.addField("아침", "이번 달이 아닌 날의 급식 정보는 제공되지 않습니다.")
-        if (mealData === undefined || mealData.morning === undefined)
+        else if (mealData === undefined || mealData.morning === undefined)
             embed.addField("아침", "오늘은 아침이 없어요!")
         else
             embed.addField("아침", mealData.morning);

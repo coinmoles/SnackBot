@@ -1,10 +1,13 @@
 import { RunFunction } from '../../utils/interfaces/Command'
 import { PREFIX } from '../../utils/constants'
-import { addSnackData } from '../../utils/helper/addSnackData'
 import { parseDateString } from '../../utils/helper/parseDateString'
+import { addMealData } from '../../utils/helper/addMealData'
+import { addSnackData } from '../../utils/helper/addSnackData'
 import { addWarning } from '../../utils/helper/addWarning'
 
-export const run: RunFunction = async (client, message) => {
+const name: string = '급식';
+
+export const mealCommand: RunFunction = async (client, message) => {
     let embed = client.embed({}, message);
 
     const dateString: string = message.content
@@ -16,15 +19,15 @@ export const run: RunFunction = async (client, message) => {
     const date = parseDateString(dateString)
 
     if (date === undefined) {
-        await message.channel.send("Invalid Date Format")
+        await message.channel.send("날짜 형식이 맞지 않아요!")
     }
     else {
-        await addSnackData(embed, date);
+        await addMealData(embed, date, { morning: true, lunch: true, dinner: true });
+        await addSnackData(embed, date)
         addWarning(embed, client);
-        embed.setTitle(`${date.year}년 ${date.month}월 ${date.day}일의 간식`);
+        embed.setTitle(`${date.year}년 ${date.month}월 ${date.day}일의 급식`);
+        
         await message.channel.send({embeds: [ embed ]})
     }
-    
+       
 }
-
-export const name: string = '간식';

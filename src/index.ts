@@ -3,4 +3,4 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-export default new Bot({token: process.env.TOKEN!}).start()
+export default new Bot().start()
