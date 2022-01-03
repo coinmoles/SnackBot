@@ -1,24 +1,40 @@
-import { Command } from '../../utils/interfaces/Command'
-import { PREFIX } from '../../utils/constants'
+import { Constants } from 'discord.js'
 import { addSnackData } from '../../utils/helper/addSnackData'
-import { parseDateString } from '../../utils/helper/parseDateString'
 import { addWarning } from '../../utils/helper/addWarning'
+import { parseDateString } from '../../utils/helper/parseDateString'
+import { Command, RunFunction, InteractionOption } from '../../utils/interfaces/Command'
 
 const name: string = '간식';
+const description: string = "특정 날짜의 간식 정보를 보여줍니다";
+const options: InteractionOption[] = [
+    {
+        name: "날짜",
+        description: "급식 정보를 원하는 날의 날짜",
+        required: false,
+        type: Constants.ApplicationCommandOptionTypes.STRING
+    }
+]
 
-export const snackCommand: Command = async (client, message, argString) => {
-    let embed = client.embed({}, message);
+const run: RunFunction = async (client, interaction, options) => {
+    let embed = client.embed({});
 
-    const date = parseDateString(argString)
+    const date = parseDateString(options.getString("날짜"));
 
     if (date === undefined) {
-        await message.channel.send("Invalid Date Format")
+        interaction.editReply("날짜 형식이 맞지 않아요!");
     }
     else {
         await addSnackData(embed, date);
         addWarning(embed, client);
         embed.setTitle(`${date.year}년 ${date.month}월 ${date.day}일의 간식`);
-        await message.channel.send({embeds: [ embed ]})
+        interaction.editReply({ embeds: [embed] });
     }
-    
+
 }
+
+export default {
+    name,
+    description,
+    options,
+    run
+} as Command;

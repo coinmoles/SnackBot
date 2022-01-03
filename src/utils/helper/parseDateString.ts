@@ -3,8 +3,8 @@ import { ShortDate } from "../interfaces/ShortDate";
 import { isNumber } from "./isNumber";
 import { toShortDate } from "./toShortDate"
 
-export const parseDateString = (dateString: string): ShortDate | undefined => {
-    if (dateString === "")
+export const parseDateString = (dateString: string | null): ShortDate | undefined => {
+    if (dateString === "" || dateString === null)
         return toShortDate(DateTime.local({ zone: "Asia/Seoul"}));
     else if (dateString === "")
         return toShortDate(DateTime.local({ zone: "Asia/Seoul"}));

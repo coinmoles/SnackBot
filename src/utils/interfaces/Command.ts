@@ -1,6 +1,25 @@
+import { CommandInteraction, CommandInteractionOptionResolver, MessageOptions, MessagePayload } from 'discord.js'
+import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums'
 import { Bot } from '../../client/Client'
-import { Message } from 'discord.js'
+
+export interface RunFunction {
+    (
+        client: Bot, 
+        interaction: CommandInteraction,
+        options: CommandInteractionOptionResolver
+    ): Promise<void>,
+}
+
+export interface InteractionOption {
+    name: string
+    description: string
+    required: boolean
+    type: ApplicationCommandOptionTypes
+}
 
 export interface Command {
-    (client: Bot, message: Message, argString: string): Promise<void>
+    name: string
+    description: string
+    options: InteractionOption[]
+    run: RunFunction
 }

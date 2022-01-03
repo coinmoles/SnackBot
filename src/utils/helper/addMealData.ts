@@ -22,7 +22,7 @@ export const addMealData = async (embed: MessageEmbed, date: ShortDate, options:
     if (options.lunch){
         if (date.year !== DateTime.now().year || date.month !== DateTime.now().month)
             embed.addField("점심", "이번 달이 아닌 날의 급식 정보는 제공되지 않습니다.")
-        if (mealData === undefined || mealData.lunch === undefined)
+        else if (mealData === undefined || mealData.lunch === undefined)
             embed.addField("점심", "오늘은 점심이 없어요!")
         else
             embed.addField("점심", mealData.lunch);
@@ -31,7 +31,7 @@ export const addMealData = async (embed: MessageEmbed, date: ShortDate, options:
     if (options.dinner){
         if (date.year !== DateTime.now().year || date.month !== DateTime.now().month)
             embed.addField("저녁", "이번 달이 아닌 날의 급식 정보는 제공되지 않습니다.")
-        if (mealData === undefined || mealData.dinner === undefined)
+        else if (mealData === undefined || mealData.dinner === undefined)
             embed.addField("저녁", "오늘은 저녁이 없어요!")
         else
             embed.addField("저녁", mealData.dinner);
